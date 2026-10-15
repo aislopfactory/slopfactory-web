@@ -16,7 +16,7 @@ const server = createServer(async (req, res) => {
 await mkdir('screenshots', { recursive: true });
 const browser = await chromium.launch();
 const sizes = { desktop: { width: 1440, height: 900 }, mobile: { width: 390, height: 844 } };
-const pages = { home: '/{l}/', blog: '/{l}/blog/', post: '/{l}/blog/template-post/' };
+const pages = { home: '/{l}/', blog: '/{l}/blog/', post: '/{l}/blog/hello-from-slop-factory/' };
 for (const lang of ['en', 'ko'])
   for (const [dev, viewport] of Object.entries(sizes)) {
     const ctx = await browser.newContext({ viewport, deviceScaleFactor: dev === 'mobile' ? 2 : 1, isMobile: dev === 'mobile', reducedMotion: 'reduce' });

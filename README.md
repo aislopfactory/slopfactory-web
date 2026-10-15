@@ -36,4 +36,4 @@ Markdown body.
 Images/videos go in `public/media/…` and are referenced with absolute paths.
 
 ## Before deploy
-`astro.config.mjs` has no `site` yet (domain not decided). Set it when the domain is approved to get absolute RSS/canonical URLs. Delete `template-post.md` (en + ko) when the real first post lands.
+`astro.config.mjs` has no `site` yet (domain not decided). Set it when the domain is approved to get absolute RSS/canonical URLs.
