@@ -1,0 +1,31 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { ui, languages, type Lang } from '../../../i18n/ui';
+import { getPosts } from '../../../i18n/posts';
+
+export function getStaticPaths() {
+  return languages.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+const t = ui[lang];
+const posts = await getPosts(lang);
+---
+<Base lang={lang} title={t.blog.title} description={t.blog.lede} current="blog" altHref={{ en: '/en/blog/', ko: '/ko/blog/' }}>
+  <section class="wrap top">
+    <p class="mono kicker">{t.blog.kicker}</p>
+    <h1 class="display h1">{t.blog.title}</h1>
+    <p class="lede">{t.blog.lede}</p>
+  </section>
+  <section class="wrap list">
+    {posts.length ? posts.map((p, i) => <PostCard post={p} lang={lang} index={i} />) : <p class="empty">{t.blog.empty}</p>}
+  </section>
+</Base>
+<style>
+  .top { padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(1.5rem, 4vw, 3rem); }
+  .kicker { margin: 0 0 1.2rem; }
+  .h1 { font-size: clamp(3.4rem, 13vw, 9rem); margin-bottom: 1.2rem; }
+  :global(:lang(ko)) .h1 { font-size: clamp(3rem, 11vw, 7rem); }
+  .lede { max-width: 50ch; font-size: clamp(1.05rem, 1rem + .5vw, 1.3rem); color: var(--ink-soft); margin: 0; }
+  .empty { border: var(--rule); border-style: dashed; padding: 2rem; margin: 0; }
+</style>

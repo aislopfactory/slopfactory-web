@@ -1,0 +1,34 @@
+---
+import { ui, formatDate, type Lang } from '../i18n/ui';
+import { readingMinutes, type Post } from '../i18n/posts';
+interface Props { post: Post; lang: Lang; index?: number }
+const { post, lang, index = 0 } = Astro.props;
+const t = ui[lang];
+const mins = readingMinutes(post.body, lang);
+---
+<article class="card">
+  <a href={`/${lang}/blog/${post.slug}/`} class="link">
+    <span class="mono num">{String(index + 1).padStart(2, '0')}</span>
+    <div class="txt">
+      <div class="mono meta"><time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, lang)}</time><span>·</span><span>{lang === 'ko' ? `${mins}${t.blog.minRead}` : `${mins} ${t.blog.minRead}`}</span></div>
+      <h3 class="display title">{post.data.title}</h3>
+      <p class="desc">{post.data.description}</p>
+    </div>
+    <span class="go mono" aria-hidden="true">→</span>
+  </a>
+</article>
+<style>
+  .card { border-top: var(--rule); }
+  .card:last-child { border-bottom: var(--rule); }
+  .link { display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 1rem; padding: 1.6rem .2rem; text-decoration: none; transition: background .15s, padding .15s; align-items: start; }
+  .link:hover { background: var(--ink); color: var(--paper); padding-inline: 1rem; }
+  .link:hover .go, .link:hover .num { color: var(--signal); }
+  .num { color: var(--signal); padding-top: .5rem; }
+  .meta { display: flex; gap: .6rem; opacity: .7; margin-bottom: .5rem; }
+  .title { font-size: clamp(1.5rem, 3.4vw, 2.4rem); line-height: 1.05; margin-bottom: .6rem; }
+  :global(:lang(ko)) .title { line-height: 1.25; }
+  .desc { margin: 0; max-width: 60ch; opacity: .85; }
+  .go { font-size: 1.6rem; align-self: center; transition: transform .15s; }
+  .link:hover .go { transform: translateX(4px); }
+  @media (max-width: 520px) { .link { grid-template-columns: 2.2rem 1fr; } .go { display: none; } }
+</style>

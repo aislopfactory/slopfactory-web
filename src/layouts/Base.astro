@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ui, languages, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  /** href of the equivalent page in each language (used for the switcher + hreflang). */
+  altHref: Record<Lang, string>;
+  /** hreflang alternates only make sense when the page really exists in both languages. */
+  hasTranslation?: boolean;
+  current?: 'about' | 'work' | 'blog' | '';
+  type?: 'website' | 'article';
+}
+const { lang, title, description, altHref, hasTranslation = true, current = '', type = 'website' } = Astro.props;
+const t = ui[lang];
+const fullTitle = title ? `${title} — ${t.siteTitle}` : `${t.siteTitle} — ${t.hero.line1} ${t.hero.line2}`;
+const desc = description ?? t.siteDescription;
+---
+<!doctype html>
+<html lang={lang} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <meta name="theme-color" content="#efe9dc" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={t.siteTitle} href={`/${lang}/rss.xml`} />
+    {hasTranslation && languages.map((l) => <link rel="alternate" hreflang={l} href={altHref[l]} />)}
+    {hasTranslation && <link rel="alternate" hreflang="x-default" href={altHref.en} />}
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:type" content={type} />
+    <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'} />
+    <meta property="og:site_name" content={t.siteTitle} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <Header lang={lang} altHref={altHref} current={current} />
+    <main id="main"><slot /></main>
+    <Footer lang={lang} />
+  </body>
+</html>

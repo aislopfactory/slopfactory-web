@@ -1,0 +1,88 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import MediaSlot from '../../../components/MediaSlot.astro';
+import { ui, languages, formatDate, otherLang, type Lang } from '../../../i18n/ui';
+import { getPosts, readingMinutes } from '../../../i18n/posts';
+
+export async function getStaticPaths() {
+  const out = [];
+  for (const lang of languages) {
+    const mine = await getPosts(lang);
+    const theirs = new Set((await getPosts(otherLang(lang))).map((p) => p.slug));
+    for (const post of mine) out.push({ params: { lang, slug: post.slug }, props: { post, hasTranslation: theirs.has(post.slug) } });
+  }
+  return out;
+}
+const lang = Astro.params.lang as Lang;
+const { post, hasTranslation } = Astro.props;
+const t = ui[lang];
+const { Content } = await render(post);
+const mins = readingMinutes(post.body, lang);
+const slug = post.slug;
+// If there is no translation, the switcher sends people to the other language's blog index.
+const altHref = {
+  en: lang === 'en' || hasTranslation ? `/en/blog/${slug}/` : '/en/blog/',
+  ko: lang === 'ko' || hasTranslation ? `/ko/blog/${slug}/` : '/ko/blog/',
+};
+---
+<Base lang={lang} title={post.data.title} description={post.data.description} current="blog" altHref={altHref} hasTranslation={hasTranslation} type="article">
+  <article>
+    <header class="wrap head">
+      <a class="mono back" href={`/${lang}/blog/`}>← {t.blog.back}</a>
+      <div class="mono meta">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, lang)}</time>
+        <span>·</span><span>{lang === 'ko' ? `${mins}${t.blog.minRead}` : `${mins} ${t.blog.minRead}`}</span>
+        {post.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
+      </div>
+      <h1 class="display title">{post.data.title}</h1>
+      <p class="lede">{post.data.description}</p>
+    </header>
+
+    <div class="wrap cover">
+      {post.data.cover
+        ? <MediaSlot kind="image" src={post.data.cover} alt={post.data.coverAlt ?? ''} />
+        : <MediaSlot kind="shot" label={t.work.shot} note={t.work.soon} />}
+    </div>
+
+    <div class="wrap">
+      <div class="prose"><Content /></div>
+      {!hasTranslation && <p class="mono note">{t.blog.onlyHere}</p>}
+    </div>
+  </article>
+</Base>
+
+<style>
+  .head { padding-block: clamp(2rem, 6vw, 4.5rem) 2rem; max-width: 62rem; }
+  .back { text-decoration: none; display: inline-block; margin-bottom: 2rem; border-bottom: 2px solid transparent; }
+  .back:hover { border-bottom-color: var(--signal); }
+  .meta { display: flex; flex-wrap: wrap; gap: .4rem .7rem; color: var(--ink-soft); margin-bottom: 1.2rem; }
+  .tag { color: var(--signal); font-weight: 600; }
+  .title { font-size: clamp(2.6rem, 8vw, 6rem); margin-bottom: 1.4rem; line-height: .95; }
+  :global(:lang(ko)) .title { font-size: clamp(2.2rem, 6.4vw, 4.6rem); line-height: 1.15; }
+  .lede { font-size: clamp(1.1rem, 1rem + .6vw, 1.5rem); color: var(--ink-soft); margin: 0; max-width: 46ch; }
+  .cover { max-width: 62rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+  .wrap:has(> .prose) { max-width: 62rem; }
+  .prose { max-width: 40rem; }
+  .note { margin-top: 3rem; color: var(--ink-soft); border-top: var(--rule); padding-top: 1rem; }
+
+  /* Markdown content */
+  .prose :global(> * + *) { margin-top: 1.25em; }
+  .prose :global(h2) { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.05; letter-spacing: -0.03em; margin-top: 2.4em; }
+  .prose :global(h3) { font-family: var(--f-display); font-weight: 700; font-size: 1.35rem; margin-top: 2em; }
+  :global(:lang(ko)) .prose :global(h2), :global(:lang(ko)) .prose :global(h3) { line-height: 1.3; }
+  .prose :global(p), .prose :global(li) { font-size: 1.08em; }
+  .prose :global(a) { text-decoration-color: var(--signal); text-decoration-thickness: 3px; text-underline-offset: 3px; }
+  .prose :global(a:hover) { background: var(--signal); color: var(--signal-ink); }
+  .prose :global(blockquote) { margin-inline: 0; padding: .4rem 0 .4rem 1.2rem; border-left: 6px solid var(--signal); font-family: var(--f-display); font-size: 1.5rem; line-height: 1.25; letter-spacing: -0.02em; font-weight: 600; }
+  :global(:lang(ko)) .prose :global(blockquote) { font-family: var(--f-body); font-weight: 700; }
+  .prose :global(code) { font-family: var(--f-mono); font-size: .88em; background: var(--paper-2); padding: .1em .35em; border: 1px solid rgba(21,19,15,.2); }
+  .prose :global(pre) { background: var(--ink); color: var(--paper); padding: 1rem 1.2rem; overflow-x: auto; border: var(--rule); }
+  .prose :global(pre code) { background: none; border: 0; padding: 0; }
+  .prose :global(img), .prose :global(video) { border: var(--rule); box-shadow: 6px 6px 0 var(--ink); }
+  .prose :global(hr) { border: 0; border-top: var(--rule); margin-block: 2.5em; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.3em; }
+  .prose :global(li::marker) { color: var(--signal); font-weight: 700; }
+  /* A bare iframe/video in markdown becomes a 16:9 embed */
+  .prose :global(iframe) { width: 100%; aspect-ratio: 16/9; border: var(--rule); box-shadow: 6px 6px 0 var(--ink); }
+</style>
