@@ -1,4 +1,3 @@
-node_modules
-dist
-.astro
-screenshots
+/public/
+/resources/_gen/
+.hugo_build.lock

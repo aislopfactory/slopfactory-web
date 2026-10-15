@@ -1,0 +1,17 @@
+{{ define "main" }}
+<section class="page-head">
+  <h1 class="meme">{{ .Title }}</h1>
+  {{- with .Params.description }}<p class="lede">{{ . }}</p>{{ end }}
+</section>
+<section class="section">
+  <div class="grid games-grid">
+    {{- range .Pages.ByDate.Reverse }}
+    {{ partial "game-card.html" . }}
+    {{- end }}
+    <div class="card coming-soon">
+      <p class="meme-sm">{{ i18n "coming_soon_title" (dict "Number" (add (len .Pages) 1)) }}</p>
+      <p>{{ i18n "coming_soon_games" (dict "BlogURL" ("blog/" | relLangURL)) | safeHTML }}</p>
+    </div>
+  </div>
+</section>
+{{ end }}

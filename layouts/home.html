@@ -1,0 +1,60 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="hero-text">
+    <p class="kicker">{{ i18n "home_kicker" | safeHTML }}</p>
+    <h1 class="meme">{{ i18n "home_headline" | safeHTML }}</h1>
+    <p class="lede">{{ i18n "site_description" }}</p>
+    <div class="hero-actions">
+      <a class="btn" href="{{ "games/" | relLangURL }}">{{ i18n "home_play_games" }}</a>
+      <a class="btn btn-ghost" href="{{ "blog/" | relLangURL }}">{{ i18n "home_read_devlogs" }}</a>
+    </div>
+    <p class="fine-print">{{ i18n "home_fine_print" }}</p>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="vat">
+      <div class="vat-blob">{{ partial "blob.svg" . }}</div>
+      <div class="drip d1"></div><div class="drip d2"></div><div class="drip d3"></div>
+    </div>
+    <div class="conveyor"><span></span></div>
+  </div>
+</section>
+
+<section class="meter-strip" aria-label="{{ i18n "stats_label" }}">
+  {{- $games := where site.RegularPages "Section" "games" }}
+  {{- $posts := where site.RegularPages "Section" "blog" }}
+  <div class="meter"><b>{{ len $games }}</b><span>{{ i18n "stats_games" }}</span></div>
+  <div class="meter"><b>{{ len $posts }}</b><span>{{ i18n "stats_posts" }}</span></div>
+  <div class="meter"><b>0</b><span>{{ i18n "stats_installs" }}</span></div>
+  <div class="meter"><b>&infin;</b><span>{{ i18n "stats_slop" }}</span></div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2 class="meme-sm">{{ i18n "home_games_heading" }}</h2>
+    <a href="{{ "games/" | relLangURL }}">{{ i18n "home_all_games" }} &rarr;</a>
+  </div>
+  <div class="grid games-grid">
+    {{- range first 3 $games.ByDate.Reverse }}
+    {{ partial "game-card.html" . }}
+    {{- end }}
+    <div class="card coming-soon">
+      <p class="meme-sm">{{ i18n "coming_soon_title" (dict "Number" (add (len $games) 1)) }}</p>
+      <p>{{ i18n "coming_soon_home" }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2 class="meme-sm">{{ i18n "home_blog_heading" }}</h2>
+    <a href="{{ "blog/" | relLangURL }}">{{ i18n "home_all_posts" }} &rarr;</a>
+  </div>
+  <div class="grid posts-grid">
+    {{- range first 3 $posts.ByDate.Reverse }}
+    {{ partial "post-card.html" . }}
+    {{- else }}
+    <p>{{ i18n "no_posts_yet" }}</p>
+    {{- end }}
+  </div>
+</section>
+{{ end }}

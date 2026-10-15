@@ -1,0 +1,54 @@
+# Production URL. The Pages workflow builds with this baseURL (custom domain, see static/CNAME).
+baseURL = "https://factory.xociety.co/"
+title = "Slop Factory"
+enableRobotsTXT = true
+summaryLength = 30
+# Measure Korean text by characters, not spaces, for summaries and reading time.
+hasCJKLanguage = true
+
+# English is the default language and stays at the site root (/). Korean lives under /ko/.
+# Tagline, description and every UI string are in i18n/en.toml and i18n/ko.toml.
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    label = "EN"
+    locale = "en-us"
+    weight = 1
+  [languages.ko]
+    label = "한국어"
+    locale = "ko-KR"
+    weight = 2
+
+[permalinks]
+  blog = "/blog/:slug/"
+  games = "/games/:slug/"
+
+[taxonomies]
+  tag = "tags"
+
+# Menu labels are translated in i18n/<lang>.toml under the "menu_<identifier>" key.
+[menus]
+  [[menus.main]]
+    identifier = "games"
+    name = "Our Games"
+    pageRef = "/games"
+    weight = 10
+  [[menus.main]]
+    identifier = "blog"
+    name = "Blog"
+    pageRef = "/blog"
+    weight = 20
+  [[menus.main]]
+    identifier = "about"
+    name = "About"
+    pageRef = "/about"
+    weight = 30
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
