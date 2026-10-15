@@ -29,7 +29,7 @@ export const ui: Record<Lang, Dict> = {
       kicker: 'Web games · Made in Korea',
       line1: 'We make games.',
       line2: 'Not slop.',
-      lede: 'Slop Factory is a small studio building web games that are played, tested and argued over before they ship. The name is a dare. The work is the answer.',
+      lede: 'Slop Factory is a small studio building web games that are played, tested and argued over before they ship. We picked the name as a reminder that every game has to earn the right not to be called slop.',
       ctaPrimary: 'Read the blog',
       ctaSecondary: 'About the studio',
       stampTop: 'Quality control',
@@ -41,7 +41,7 @@ export const ui: Record<Lang, Dict> = {
       kicker: '01 — The promise',
       title: 'Three rules on the factory floor.',
       items: [
-        { n: '01', title: 'Played before shipped', body: 'If nobody on the team wants to play it twice, it does not leave the building. Placeholder copy — the real rules arrive with the first post.' },
+        { n: '01', title: 'Played before shipped', body: 'If nobody on the team wants to play it twice, it does not leave the building. We play every build ourselves, and whatever bores us gets fixed or cut.' },
         { n: '02', title: 'Small on purpose', body: 'A few games, finished properly, beat a hundred half-baked ones. We would rather cut a feature than pad it.' },
         { n: '03', title: 'A human signs off', body: 'Tools can help us make things. A person decides whether a thing is good enough to put our name on.' },
       ],
@@ -56,10 +56,10 @@ export const ui: Record<Lang, Dict> = {
     },
     about: {
       kicker: '03 — The studio',
-      title: 'A small studio with a big objection.',
+      title: 'A small studio that objects to slop.',
       body: [
         'Slop Factory is a Korea-based game studio. We build for the browser because it is the most open platform there is: no store, no install, just a link.',
-        'We chose a name that makes people raise an eyebrow, then set ourselves the harder job of never earning it. This page is placeholder copy; the full story is coming.',
+        'We chose a name that makes people raise an eyebrow, then set ourselves the harder job of never earning it. Every mechanic, sound and line of text in our games is there because someone decided it should be, and the blog shows how it all gets made, including the parts that go badly.',
       ],
       facts: [
         { k: 'Based in', v: 'Korea' },
@@ -83,7 +83,7 @@ export const ui: Record<Lang, Dict> = {
     footer: {
       tagline: 'Web games. Not slop.',
       rights: 'Slop Factory',
-      madeIn: 'Made by hand in Korea.',
+      madeIn: 'Made in Korea. A human signs off.',
     },
   },
   ko: {
@@ -95,7 +95,7 @@ export const ui: Record<Lang, Dict> = {
       kicker: '웹 게임 · 한국에서 만듭니다',
       line1: '게임을 만듭니다.',
       line2: '대충은 아닙니다.',
-      lede: '슬롭 팩토리는 직접 해 보고, 테스트하고, 끝까지 따져 본 뒤에야 내놓는 웹 게임을 만드는 작은 스튜디오입니다. 이름은 도발이고, 결과물이 그 대답입니다.',
+      lede: '슬롭 팩토리는 직접 해 보고, 테스트하고, 끝까지 따져 본 뒤에야 내놓는 웹 게임을 만드는 작은 스튜디오입니다. 이 이름은 모든 게임이 슬롭이라 불리지 않을 자격을 갖춰야 한다는 다짐입니다.',
       ctaPrimary: '블로그 읽기',
       ctaSecondary: '스튜디오 소개',
       stampTop: '품질 검수',
@@ -107,9 +107,9 @@ export const ui: Record<Lang, Dict> = {
       kicker: '01 — 약속',
       title: '공장 바닥에 붙인 세 가지 원칙.',
       items: [
-        { n: '01', title: '해 보고 내놓는다', body: '팀원 누구도 두 번 하고 싶지 않은 게임은 공장 문을 나서지 못합니다. 임시 문구이며, 실제 원칙은 첫 번째 글과 함께 공개됩니다.' },
-        { n: '02', title: '일부러 작게 만든다', body: '제대로 끝낸 몇 개의 게임이 어설픈 백 개보다 낫습니다. 기능을 억지로 부풀리느니 과감히 덜어냅니다.' },
-        { n: '03', title: '마지막은 사람이 본다', body: '도구는 만드는 일을 도울 수 있습니다. 하지만 우리 이름을 걸어도 될 만큼 좋은지는 사람이 판단합니다.' },
+        { n: '01', title: '해 보고 내놓는다', body: '팀원 누구도 두 번 하고 싶지 않은 게임은 공장 문을 나서지 못합니다. 모든 빌드를 직접 플레이해 보고, 지루한 부분은 고치거나 덜어 냅니다.' },
+        { n: '02', title: '일부러 작게 만든다', body: '제대로 끝낸 게임 몇 개가 어설픈 게임 백 개보다 낫습니다. 기능을 억지로 부풀리느니 덜어 냅니다.' },
+        { n: '03', title: '마지막은 사람이 본다', body: '도구는 만드는 일을 도울 수 있습니다. 하지만 저희 이름을 걸어도 될 만큼 좋은지는 사람이 판단합니다.' },
       ],
     },
     work: {
@@ -122,13 +122,13 @@ export const ui: Record<Lang, Dict> = {
     },
     about: {
       kicker: '03 — 스튜디오',
-      title: '작지만 할 말은 분명한 스튜디오.',
+      title: '슬롭에 반대하는 작은 스튜디오.',
       body: [
-        '슬롭 팩토리는 한국의 게임 스튜디오입니다. 스토어도 설치도 없이 링크 하나면 되는 브라우저가 가장 열린 플랫폼이라고 믿기에, 웹을 위해 만듭니다.',
-        '눈살이 찌푸려질 만한 이름을 붙이고, 그 이름에 걸맞은 결과물은 절대 내지 않겠다는 더 어려운 숙제를 스스로 떠안았습니다. 이 페이지는 임시 문구이며, 전체 이야기는 곧 공개됩니다.',
+        '슬롭 팩토리는 한국의 게임 스튜디오입니다. 저희는 브라우저를 위해 만듭니다. 스토어도 설치도 없이 링크 하나면 되는, 가장 열린 플랫폼이니까요.',
+        '고개를 갸웃거리게 할 만한 이름을 붙이고, 그 이름에 걸맞은 결과물은 절대 내지 않겠다는 더 어려운 숙제를 스스로 떠안았습니다. 게임 속 모든 메커닉과 소리, 문장은 누군가 이유를 갖고 고른 것이고, 만드는 과정은 잘 풀리지 않은 부분까지 블로그에서 보여 드립니다.',
       ],
       facts: [
-        { k: '위치', v: '대한민국' },
+        { k: '소재지', v: '한국' },
         { k: '플랫폼', v: '웹 (데스크톱 + 모바일)' },
         { k: '언어', v: 'English, 한국어' },
         { k: '상태', v: '작업실에서 제작 중' },
@@ -143,13 +143,13 @@ export const ui: Record<Lang, Dict> = {
       empty: '아직 글이 없습니다. 첫 글을 준비하고 있습니다.',
       readMore: '글 읽기',
       back: '전체 글',
-      minRead: '분 분량',
+      minRead: '분 읽기',
       onlyHere: '이 글은 한국어로만 제공됩니다.',
     },
     footer: {
       tagline: '웹 게임. 대충은 아닙니다.',
       rights: '슬롭 팩토리',
-      madeIn: '한국에서 손으로 만듭니다.',
+      madeIn: '한국에서 만들고, 마지막은 사람이 봅니다.',
     },
   },
 };
