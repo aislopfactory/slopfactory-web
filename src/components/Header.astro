@@ -8,7 +8,7 @@ const base = `/${lang}/`;
 <a class="skip mono" href="#main">{t.skip}</a>
 <header class="head">
   <div class="wrap bar">
-    <a class="logo" href={base} aria-label={`${t.siteTitle} — home`}>
+    <a class="logo" href={base} aria-label={`${t.siteTitle} — ${t.a11y.home}`}>
       <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
         <rect x="1.5" y="1.5" width="29" height="29" fill="var(--ink)" />
         <path d="M8 22 L8 10 L13 14 L13 10 L18 14 L18 10 L24 10 L24 22 Z" fill="var(--paper)" />
@@ -16,7 +16,7 @@ const base = `/${lang}/`;
       </svg>
       <span class="display name">{lang === 'en' ? <>Slop<br />Factory</> : t.siteTitle}</span>
     </a>
-    <nav aria-label="Primary" class="nav mono">
+    <nav aria-label={t.a11y.primaryNav} class="nav mono">
       <a href={`${base}#studio`} aria-current={current === 'about' ? 'page' : undefined}>{t.nav.about}</a>
       <a href={`${base}#games`} aria-current={current === 'work' ? 'page' : undefined}>{t.nav.work}</a>
       <a href={`${base}blog/`} aria-current={current === 'blog' ? 'page' : undefined}>{t.nav.blog}</a>

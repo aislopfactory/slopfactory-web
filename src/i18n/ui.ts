@@ -10,6 +10,7 @@ type Dict = {
   siteDescription: string;
   nav: { about: string; work: string; blog: string };
   skip: string;
+  a11y: { home: string; primaryNav: string };
   hero: { kicker: string; line1: string; line2: string; lede: string; ctaPrimary: string; ctaSecondary: string; stampTop: string; stampMid: string; stampBot: string };
   ticker: string;
   promise: { kicker: string; title: string; items: { n: string; title: string; body: string }[] };
@@ -25,6 +26,7 @@ export const ui: Record<Lang, Dict> = {
     siteDescription: 'A Korea-based studio making web games, and refusing to ship slop.',
     nav: { about: 'Studio', work: 'Games', blog: 'Blog' },
     skip: 'Skip to content',
+    a11y: { home: 'home', primaryNav: 'Primary' },
     hero: {
       kicker: 'Web games · Made in Korea',
       line1: 'We make games.',
@@ -91,6 +93,7 @@ export const ui: Record<Lang, Dict> = {
     siteDescription: '대충 만든 게임은 내보내지 않는, 한국의 웹 게임 스튜디오.',
     nav: { about: '스튜디오', work: '게임', blog: '블로그' },
     skip: '본문으로 건너뛰기',
+    a11y: { home: '홈', primaryNav: '주 메뉴' },
     hero: {
       kicker: '웹 게임 · 한국에서 만듭니다',
       line1: '게임을 만듭니다.',
