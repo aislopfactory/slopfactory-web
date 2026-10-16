@@ -1,7 +1,7 @@
 ---
 title: "밤에 피는 꽃"
 slug: "night-bloom"
-date: 2026-10-16T08:00:00Z
+date: 2026-10-16T05:00:00Z
 summary: "화분 식물이 새싹 하나씩 빙의되고 있어요. 선을 그어 저주받은 새싹만 잘라 내고, 건강한 새싹은 지켜 주세요."
 cover: "night-bloom-title.png"
 version: "1.0.0"
