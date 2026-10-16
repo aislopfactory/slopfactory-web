@@ -1,6 +1,6 @@
 ---
 title: "Clawback Devlog: Be the Claw Machine, Keep the Crowd Happy"
-date: 2026-10-16T07:00:00.000Z
+date: 2026-10-16T01:00:00.000Z
 slug: "clawback-devlog"
 summary: "How we built Clawback in about three hours: a claw machine where you slide the prize floor so the claw misses, two meters that pull against each other, a simulation that bots could play before any art existed, and everything drawn and synthesised in code."
 tags: ["clawback","devlog","html5 games","game design","game testing","indie dev"]
