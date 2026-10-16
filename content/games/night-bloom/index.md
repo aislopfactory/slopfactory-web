@@ -1,7 +1,7 @@
 ---
 title: "Night Bloom"
 slug: "night-bloom"
-date: 2026-10-16T08:00:00Z
+date: 2026-10-16T05:00:00Z
 summary: "A houseplant is being possessed, one shoot at a time. Draw a stroke to snip the cursed shoots, and spare the healthy ones."
 cover: "night-bloom-title.png"
 version: "1.0.0"

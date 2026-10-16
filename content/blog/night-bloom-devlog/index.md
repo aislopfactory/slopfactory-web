@@ -1,6 +1,6 @@
 ---
 title: "Night Bloom Devlog: Cut the Cursed Shoots, Spare the Healthy Ones"
-date: 2026-10-16T08:00:00.000Z
+date: 2026-10-16T05:00:00.000Z
 slug: "night-bloom-devlog"
 summary: "How we built Night Bloom in about an hour: a haunted houseplant you save by drawing strokes across it, two meters that punish both hesitation and haste, a simulation that bots played hundreds of times before it had a face, and art and sound drawn and synthesised in code."
 tags: ["night bloom","devlog","html5 games","game design","game testing","indie dev"]
